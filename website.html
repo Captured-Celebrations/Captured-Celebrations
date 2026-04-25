@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Captured Celebrations</title>
+
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --black: #0a0a0a;
+      --offwhite: #f5f5f5;
+      --lightgold: #e6d5b8;
+      --card: rgba(255, 255, 255, 0.03);
+      --border: rgba(230, 213, 184, 0.2);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--black);
+      color: var(--offwhite);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(10, 10, 10, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-wrap {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--offwhite);
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover { color: var(--gold); }
+
+    section {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 90px 24px;
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 70px;
+    }
+
+    .hero img {
+      max-width: 340px;
+      width: 80%;
+      margin-bottom: 28px;
+    }
+
+    h1, h2, h3 {
+      color: var(--gold);
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 2.9rem;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p.lead {
+      max-width: 760px;
+      margin: 0 auto 26px;
+      font-size: 1.08rem;
+    }
+
+    .button, .button-outline {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      margin: 8px 8px 0 8px;
+    }
+
+    .button {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .button-outline {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+    }
+
+    .intro {
+      max-width: 760px;
+      margin-bottom: 36px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .muted {
+      color: var(--lightgold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      display: inline-block;
+      margin-top: 8px;
+      margin-bottom: 10px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .highlight {
+      background: linear-gradient(180deg, rgba(201, 168, 76, 0.12), rgba(201, 168, 76, 0.03));
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      border-radius: 22px;
+      padding: 34px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .portfolio-grid img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+      border: 1px solid var(--border);
+      background: #111;
+    }
+
+    .service-area {
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px 60px;
+      color: rgba(245, 245, 245, 0.75);
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.7rem; }
+      .hero {
+        min-height: auto;
+        padding-top: 120px;
+        padding-bottom: 70px;
+      }
+      .nav-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav { gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-wrap">
+      <a href="#" class="brand">Captured Celebrations</a>
+      <nav>
+        <a href="#sessions">Sessions</a>
+        <a href="#packages">Packages</a>
+        <a href="#planning">Event Planning</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <img src="logo.png" alt="Captured Celebrations logo" />
+      <h1>Capturing the moments that matter most.</h1>
+      <p class="lead">
+        Photography & event planning in Chatham-Kent and surrounding areas, designed with intention, warmth, and a love for meaningful moments.
+      </p>
+      <a href="https://book.usesession.com/i/Ztb3HbbhPM" class="button" target="_blank">Book Your Experience</a>
+      <a href="#planning" class="button-outline">Plan Your Event</a>
+    </div>
+  </section>
+
+  <section id="sessions">
+    <div class="intro">
+      <h2>Every session tells a different story — here’s where yours begins.</h2>
+      <p>
+        Every client brings something different to their session, and that is exactly what makes the experience so meaningful. Whether you are celebrating love, family, growth, or a milestone moment, each session is designed to reflect you.
+      </p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Family Sessions</h3>
+        <p>Family sessions are all about capturing genuine connection — the laughter, the little moments, and the love that makes your family yours. I create a relaxed space so you can simply be yourselves.</p>
+        <a href="https://book.usesession.com/i/Ztb3HbbhPM" class="button" target="_blank">View Packages & Book</a>
+      </div>
+
+      <div class="card">
+        <h3>Couples Sessions</h3>
+        <p>From soft, intimate moments to playful, flirty energy, couples sessions are about telling your story as it naturally unfolds — beautifully real and full of connection.</p>
+        <a href="https://book.usesession.com/i/Ztb3HbbhPM" class="button" target="_blank">View Packages & Book</a>
+      </div>
+
+      <div class="card">
+        <h3>Maternity Sessions</h3>
+        <p>A chapter filled with anticipation and love. These sessions capture the strength, softness, and quiet moments as you prepare to welcome new life.</p>
+        <a href="https://book.usesession.com/i/Ztb3HbbhPM" class="button" target="_blank">View Packages & Book</a>
+      </div>
+
+      <div class="card">
+        <h3>Children Sessions</h3>
+        <p>Every child is unique. I focus on letting them be themselves — capturing their laughter, curiosity, and imagination in a natural and meaningful way.</p>
+        <a href="https://book.usesession.com/i/Ztb3HbbhPM" class="button" target="_blank">View Packages & Book</a>
+      </div>
+
+      <div class="card">
+        <h3>Solo Sessions</h3>
+        <p>A space to celebrate you — your story, growth, and confidence. Whether it’s a milestone or a fresh start, these sessions reflect who you are in this moment.</p>
+        <a href="https://book.usesession.com/i/Ztb3HbbhPM" class="button" target="_blank">View Packages & Book</a>
+      </div>
+
+      <div class="card">
+        <h3>Event Photography</h3>
+        <p>From meaningful details to candid emotions, event coverage captures the moments that make your celebration unforgettable.</p>
+        <a href="https://book.usesession.com/i/Ztb3HbbhPM" class="button" target="_blank">View Packages & Book</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages">
+    <div class="intro">
+      <h2>Photography Packages</h2>
+      <p>From seasonal minis to full sessions and event coverage, each package is designed to offer a beautiful, relaxed experience with room to tell your story.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="muted">20 minutes • 10 photos</div>
+        <h3>Mini Sessions</h3>
+        <div class="price">$50</div>
+        <p>Seasonal and holiday-themed sessions with styling and location selected to suit the occasion.</p>
+      </div>
+
+      <div class="card">
+        <div class="muted">30 minutes • 20 photos</div>
+        <h3>Basic Session</h3>
+        <div class="price">$75</div>
+        <p>A client-chosen location with a $37.50 booking deposit required to hold your date and time.</p>
+      </div>
+
+      <div class="card">
+        <div class="muted">60 minutes • client-chosen location</div>
+        <h3>Full Session</h3>
+        <div class="price">$100</div>
+        <p>A full hour session with a $50 non-refundable retainer required to secure your booking.</p>
+      </div>
+
+      <div class="card">
+        <div class="muted">1 hour minimum • unlimited event photos</div>
+        <h3>Event Photography</h3>
+        <div class="price">$150/hour</div>
+        <p>A $75 non-refundable retainer is required. Specific requested images can also be prioritized for your event.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="planning">
+    <div class="intro">
+      <h2>Event Planning & Styling</h2>
+      <p>Every event begins as a simple idea — but bringing it to life takes time, planning, and attention to detail. Captured Celebrations is here to take that weight off your shoulders, allowing you to enjoy the moment while your vision is thoughtfully brought together.</p>
+    </div>
+
+    <div class="highlight">
+      <p>I love being part of meaningful moments and creating events that feel right for each client. Whether your vision is luxurious and formal or casual and fun, every detail is planned with care and intention. From brainstorming ideas to styling and setup, my goal is to make the process feel less overwhelming and more exciting.</p>
+      <p>One of the most rewarding parts of planning is seeing your reaction as everything comes together — watching your vision turn into something real. With Captured Celebrations by your side, your event is designed to feel complete, meaningful, and unforgettable.</p>
+    </div>
+
+    <div class="grid grid-3" style="margin-top: 28px;">
+      <div class="card">
+        <div class="muted">60-minute planning meeting</div>
+        <h3>Consultation</h3>
+        <div class="price">$100</div>
+        <p>Includes budget guidance, vendor suggestions, theme and decor brainstorming, plus a follow-up email with notes. A $50 deposit is required.</p>
+      </div>
+
+      <div class="card">
+        <div class="muted">Decor and focal setup support</div>
+        <h3>Event Styling & Setup</h3>
+        <div class="price">$300</div>
+        <p>Includes decor planning assistance, gift and cake table styling, other table styling, backdrop or focal decor setup, and setup coordination with the venue. A $90 deposit is required.</p>
+      </div>
+
+      <div class="card">
+        <div class="muted">Up to 6 hours</div>
+        <h3>Day-Of Event Coordination</h3>
+        <div class="price">$450</div>
+        <p>Includes timeline creation, vendor communication, and day-of coordination to manage the schedule and transitions. A $135 deposit is required.</p>
+      </div>
+
+      <div class="card">
+        <div class="muted">Custom planning support</div>
+        <h3>Partial Event Planning</h3>
+        <div class="price">$750</div>
+        <p>A more hands-on planning experience tailored to your event needs. A $225 non-refundable deposit is required.</p>
+      </div>
+
+      <div class="card">
+        <div class="muted">Planning + photography combined</div>
+        <h3>Celebration Planning & Photography Bundle</h3>
+        <div class="price">$900</div>
+        <p>A complete package combining planning and photography services for a more seamless experience. A $270 deposit is required.</p>
+      </div>
+
+      <div class="card">
+        <div class="muted">Additional options</div>
+        <h3>Add-Ons</h3>
+        <p>Decor tear down ($100), balloon garland setup ($75, $95, or $120), vendor management ($75), vendor booking & management ($75), decor sourcing ($100), event coordination ($75/hour), venue research and communication ($75), and payment plans for select services.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="intro">
+      <h2>Featured Work</h2>
+      <p>A glimpse into the stories, milestones, and moments already captured through Captured Celebrations.</p>
+    </div>
+
+    <div class="portfolio-grid">
+      <img src="photo1.jpg" alt="Featured portfolio image 1">
+      <img src="photo2.jpg" alt="Featured portfolio image 2">
+      <img src="photo3.jpg" alt="Featured portfolio image 3">
+      <img src="photo4.jpg" alt="Featured portfolio image 4">
+      <img src="photo5.jpg" alt="Featured portfolio image 5">
+      <img src="photo6.jpg" alt="Featured portfolio image 6">
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="intro">
+      <h2>What to Expect</h2>
+      <p>From the moment you book, everything is designed to feel easy, comfortable, and tailored to you.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Your Session, Your Style</h3>
+        <p>Every client is different, which is why I ask about your preferences ahead of time. Whether you love posed photos, candid moments, or a mixture of both, your session will reflect what feels most natural to you.</p>
+      </div>
+
+      <div class="card">
+        <h3>Comfort Comes First</h3>
+        <p>I want every client to feel comfortable, confident, relaxed, and excited. I’ll guide you when needed while also leaving room for genuine, raw emotion to unfold naturally.</p>
+      </div>
+
+      <div class="card">
+        <h3>Editing & Delivery</h3>
+        <p>Your images are carefully edited to match the Captured Celebrations style. Turnaround time is typically one week, or up to two weeks during busier times such as mini sessions or larger bookings.</p>
+      </div>
+
+      <div class="card">
+        <h3>Photo Options</h3>
+        <p>The number of images you receive depends on the package selected at booking. Basic, Full, and Event sessions offer additional photo purchases. Mini sessions include a set number of images due to the shorter session time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="intro">
+      <h2>Why Choose Captured Celebrations</h2>
+    </div>
+
+    <div class="card">
+      <p>Captured Celebrations began in 2024 under the name <em>JM Captures</em>, starting with simple photography sessions that focused on preserving meaningful moments in a natural way.</p>
+      <p>Over time, that passion grew into something more. Alongside photography, event planning and styling became part of the vision — creating a brand that offers not only beautiful images, but also thoughtful support behind the moments being celebrated.</p>
+      <p>What makes these sessions different is the level of care and intention behind each one. From discussing outfits and preferred tones, to choosing the right time of day and understanding the story you want to tell, every detail is considered with purpose.</p>
+      <p>Above all, every client is treated with dignity, respect, and understanding. Comfort is at the center of everything I do. While I may be the one behind the camera, you are the one in the photo — and your comfort, confidence, and experience always come first.</p>
+      <p>Clients can expect an easy-going, relaxed experience that allows genuine moments to unfold naturally while still capturing the images they truly want.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="intro">
+      <h2>From the Blog</h2>
+      <p>Follow along for session highlights, behind-the-scenes moments, planning inspiration, and exclusive offers shared with blog readers.</p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>Welcome to Captured Celebrations</h3>
+        <p>Get to know the story behind Captured Celebrations, what it means, and what’s coming next.</p>
+        <a href="blog-welcome.html" class="button">Read More</a>
+      </div>
+
+      <div class="card">
+        <h3>Coming Soon</h3>
+        <p>Use this space for session recaps, event features, and blog-only discount codes.</p>
+      </div>
+
+      <div class="card">
+        <h3>Coming Soon</h3>
+        <p>Your blog can become a special place for returning visitors and loyal clients.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-area" id="contact">
+    <h2>Based in Ontario</h2>
+    <p>Captured Celebrations proudly serves Chatham-Kent and surrounding communities.</p>
+    <p style="margin-top: 18px;">Ready to book a session or start planning your event?</p>
+    <a href="https://book.usesession.com/i/Ztb3HbbhPM" class="button" target="_blank">Book a Session</a>
+  </section>
+
+  <footer>
+    <p>© 2026 Captured Celebrations</p>
+  </footer>
+
+</body>
+</html>
